@@ -1,9 +1,15 @@
-function App() {
+import React from 'react'
+import Header from './components/Header'
+import ItemLists from './components/ItemLists'
 
+const App: React.FC = () => {
   return (
-    <main>
-      <p className="text-lg text-blue-500">Greetings -  Hello, World!</p>
-    </main>
+    <>
+      <Header totalItem={0} />
+      <main>
+        <ItemLists />
+      </main>
+    </>
   )
 }
 
