@@ -5,7 +5,7 @@ import ItemLists from './components/ItemLists'
 import TotalAmount from './components/TotalAmout'
 
 const App: React.FC = () => {
-  const { loading, errMsg } = useContext<any>(Context)
+  const { loading, errMsg, carts} = useContext<any>(Context)
 
   if (loading) {
     return (
@@ -31,9 +31,13 @@ const App: React.FC = () => {
     <>
       <Header totalItem={0} />
       <main className="main">
-        <h1 className="main-h1 md:text-5xl">your bag</h1>
-        <ItemLists />
-        <TotalAmount />
+        {carts.length > 0 ?
+          <>
+            <h1 className="main-h1 md:text-5xl">your bag</h1>
+            <ItemLists />
+            <TotalAmount />
+          </> :
+          <h1 className="info text-2xl">Your cart is empty</h1>}
       </main>
     </>
   )
