@@ -31,6 +31,12 @@ export const cartReducer = (state:State, action:Actions) => {
                 ...state, carts: newCarts
             }
         }
+        case 'REM': {
+            const newCarts = state.carts.filter((cart:any) => cart.id !== action.idx)
+            return {
+                ...state, carts: newCarts
+            }
+        }
         default: {
             return state
         }
