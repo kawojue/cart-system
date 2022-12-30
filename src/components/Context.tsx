@@ -47,13 +47,17 @@ export const DataProvider: React.FC<{children: React.ReactElement}> = ({ childre
         }
     }
 
-    const remove = (id:string):void => {
+    const removeCart = (id:string):void => {
         dispatch({type: 'REM', idx: id})
+    }
+
+    const clearCart = ():void => {
+        dispatch({type: 'CLEAR'})
     }
 
     return (
         <Context.Provider value={{
-            ...state, quantity, remove
+            ...state, quantity, removeCart, clearCart
         }}>
             {children}
         </Context.Provider>
