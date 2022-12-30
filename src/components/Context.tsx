@@ -1,23 +1,33 @@
 import data from '../data'
-import {reducer} from '../reducer'
-import React, {createContext, useState, useReducer} from 'react'
+import {cartReducer} from '../cartReducer'
+import React, {createContext, useState, useReducer, ReactChildren} from 'react'
 
 const Context = createContext({})
 
-interface Props {
+interface IProps {
     children: React.ReactElement
 }
 
 const initialStates:any = {
+    qauntity: 0
 }
 
-export const DataProvider: React.FC<Props> = ({children}) => {
-    const [state, dispatch] = useReducer<any>(reducer, initialStates)
+export const DataProvider: React.FC<IProps> = ({children}) => {
+    interface ICarts {
+    id: number
+    title: string
+    price: number
+    img: string
+    quantity: number
+}
+
+    const [carts, setCarts] = useState<ICarts[]>(data)
+    const [state, dispatch] = useReducer<any>(cartReducer, initialStates)
 
 
     return (
         <Context.Provider value={{
-            
+            carts
         }}>
             {children}
         </Context.Provider>
