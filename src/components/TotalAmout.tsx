@@ -1,6 +1,9 @@
-import React from 'react'
+import Context from './Context'
+import React, { useContext } from 'react'
 
 const TotalAmount:React.FC = () => {
+    const { clearCart } = useContext<any>(Context)
+
     return (
         <section className="item-total">
             <div className="line"/>
@@ -9,7 +12,7 @@ const TotalAmount:React.FC = () => {
                 <p>$54556.57</p>
             </article>
             <div className="btn-conatainer">
-            <button>
+            <button onClick={() => clearCart()}>
                 clear cart
             </button>
             </div>
