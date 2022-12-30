@@ -5,7 +5,7 @@ import { FaChevronUp } from 'react-icons/fa'
 import { FaChevronDown } from 'react-icons/fa'
 
 const Item: React.FC<ICarts> = ({id, title, price, img, amount}) => {
-    const { quantity, remove } = useContext<any>(Context)
+    const { quantity, removeCart } = useContext<any>(Context)
 
     return (
         <article className="item-center">
@@ -13,7 +13,7 @@ const Item: React.FC<ICarts> = ({id, title, price, img, amount}) => {
             <div className="item-info">
                 <h2>{title}</h2>
                 <p>${price}</p>
-                <button onClick={() => remove(id)}>
+                <button onClick={() => removeCart(id)}>
                     remove
                 </button>
             </div>
