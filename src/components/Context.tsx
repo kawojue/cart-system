@@ -1,12 +1,12 @@
 import axios from 'axios'
+import { State } from '../IType'
 import data from '../data'
-import {IState } from '../interface'
 import { cartReducer } from '../cartReducer'
 import React, {createContext, useReducer, useEffect} from 'react'
 
 const Context:any | null = createContext({})
 
-const initialStates:IState = {
+const initialStates:State = {
     loading: true,
     amount: 0,
     total: 0,
@@ -14,31 +14,46 @@ const initialStates:IState = {
     errMsg: null
 }
 
-export const DataProvider: React.FC<{children: React.ReactElement}> = ({children}) => {
+export const DataProvider: React.FC<{children: React.ReactElement}> = ({ children }) => {
     const [state, dispatch] = useReducer(cartReducer, initialStates)
     const url:string = 'https://course-api.com/react-useReducer-cart-project'
 
-    const fetchCarts = async () => {
+    const fetchCarts = async ():Promise<void> => {
         try {
-            dispatch({type: 'LOADING', payload: true})
+            dispatch({type: 'ERROR', errMsg: null})
+            dispatch({type: 'LOADING', isLoading: true})
             const res = await axios.get(url)
             const data = res.data
             dispatch({type: 'FETCH', payload: data})
         } catch {
-            dispatch({type: 'ERROR', payload: 'Please, reload the page.'})
+            dispatch({type: 'ERROR', errMsg: 'Please, reload the page.'})
         }
     }
 
     useEffect(() => {
         (async () => await fetchCarts())()
         setTimeout(() => {
-            dispatch({type: 'LOADING', payload: false})
+            dispatch({type: 'LOADING', isLoading: false})
         }, 1500)
     }, [])
 
+    const quantity = (id:string, action:string):void => {
+        if (action === 'increment') {
+            dispatch({type: "INCREASE", idx: id})
+        }
+
+        if (action === 'decrement') {
+            dispatch({type: "DECREASE", idx: id})
+        }
+    }
+
+    const remove = (id:string):void => {
+        dispatch({type: 'REM', idx: id})
+    }
+
     return (
         <Context.Provider value={{
-            ...state
+            ...state, quantity, remove
         }}>
             {children}
         </Context.Provider>
