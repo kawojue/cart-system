@@ -29,7 +29,7 @@ const App: React.FC = () => {
 
   return (
     <>
-      <Header totalItem={0} />
+      <Header totalItem={carts.length} />
       <main className="main">
         {carts.length > 0 ?
           <>
