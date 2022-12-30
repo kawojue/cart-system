@@ -1,9 +1,32 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import Header from './components/Header'
+import Context from './components/Context'
 import ItemLists from './components/ItemLists'
 import TotalAmount from './components/TotalAmout'
 
 const App: React.FC = () => {
+  const { loading, errMsg } = useContext<any>(Context)
+
+  if (loading) {
+    return (
+    <>
+      <h1 className="info text-4xl">
+        LOADING...
+      </h1>
+    </>
+    )
+  }
+
+  if (errMsg) {
+    return (
+      <>
+        <h1 className="info text-xl">
+          {errMsg}
+        </h1>
+      </>
+    )
+  }
+
   return (
     <>
       <Header totalItem={0} />
