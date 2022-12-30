@@ -13,3 +13,8 @@ export type State = {
     carts: ICarts[]
     errMsg: null | string
 }
+
+export interface IQuantityObj {
+    idx: string
+    quantity: number | undefined
+}
