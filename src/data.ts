@@ -1,4 +1,4 @@
-import { ICarts } from "./interface"
+import { ICarts } from "./IType"
 
 const data: ICarts[] = [
     {
