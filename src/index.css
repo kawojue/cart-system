@@ -28,7 +28,7 @@ body {
 }
 
 .main {
-    @apply mt-36 mx-auto w-[90vw] max-w-[700px];
+    @apply mt-36 mb-14 mx-auto w-[90vw] max-w-[700px];
 }
 
 .main-h1 {
@@ -69,7 +69,15 @@ body {
 }
 
 .item-info button {
-    @apply trans-0 mt-2;
+    @apply trans-0 mt-1.5;
+}
+
+.item-info h2 {
+    @apply capitalize;
+}
+
+.item-info p {
+    @apply mt-0.5;
 }
 
 .item-info button,
@@ -81,4 +89,24 @@ body {
 .item-info p,
 .item-info h2 {
     @apply tracking-widest font-medium;
+}
+
+.item-total {
+    @apply mt-14 w-full flex flex-col items-center;
+}
+
+.line {
+    @apply w-full h-0.5 bg-pry-clr-3;
+}
+
+.item-total article {
+    @apply w-full flex justify-between mt-2 tracking-widest font-semibold capitalize text-lg px-2;
+}
+
+.item-total button {
+    @apply mx-auto mt-9 text-pry-clr-5 rounded-md px-6 py-0.5 uppercase text-lg font-semibold tracking-widest trans-0 border-2 border-pry-clr-5 w-fit;
+}
+
+.item-total button:hover {
+    @apply bg-pry-clr-6;
 }
