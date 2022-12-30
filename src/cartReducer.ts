@@ -1,9 +1,9 @@
-import { State, ICarts} from "./IType"
+import { State, ICarts, IQuantityObj} from "./IType"
 
 export type Actions = 
     | {type: 'LOADING'; isLoading: boolean}
-    | {type: 'INCREASE'; idx:string}
-    | {type: 'DECREASE'; idx:string}
+    | {type: 'INCREASE'; quantObj: IQuantityObj}
+    | {type: 'DECREASE'; quantObj: IQuantityObj}
     | {type: 'REM'; idx:string}
     | {type: 'CLEAR'}
     | {type: 'FETCH'; payload: ICarts[]}
@@ -26,7 +26,7 @@ export const cartReducer = (state:State, action:Actions) => {
             }
         }
         case 'INCREASE': {
-            const newCarts = state.carts.map((cart:any) => cart.id === action.idx ? {...cart, amount: cart.amount += 1} : cart)
+            const newCarts = state.carts.map((cart:any) => cart.id === action.quantObj.idx ? {...cart, amount: cart.amount += 1} : cart)
             return {
                 ...state, carts: newCarts
             }
