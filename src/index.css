@@ -7,6 +7,10 @@ body {
     @apply font-cabin relative bg-pry-clr-0 text-pry-clr-1;
 }
 
+.trans-0 {
+    @apply transition-all duration-300 ease-linear;
+}
+
 .header {
     @apply w-full mx-auto fixed top-0 bg-pry-clr-2 text-white text-2xl tracking-wider font-semibold px-10 py-5;
 }
@@ -20,7 +24,7 @@ body {
 }
 
 .totalItem {
-    @apply absolute -top-[10px] -right-[5px] bg-blue-400 rounded-full px-1 py-0.5 text-sm;
+    @apply absolute -top-[10px] -right-[5px] bg-pry-clr-4 rounded-full px-1 py-0.5 text-sm;
 }
 
 .main {
@@ -49,4 +53,32 @@ body {
 
 .quantity-container {
     @apply flex flex-col items-center gap-2;
+}
+
+.quantity-container button {
+    @apply text-pry-clr-2 trans-0;
+}
+
+.quantity-container button:hover,
+.item-info button:hover {
+    @apply text-pry-clr-4;
+}
+
+.quantity-container p {
+    @apply text-xl;
+}
+
+.item-info button {
+    @apply trans-0 mt-2;
+}
+
+.item-info button,
+.item-info p {
+    @apply text-pry-clr-3;
+}
+
+.item-info button,
+.item-info p,
+.item-info h2 {
+    @apply tracking-widest font-medium;
 }
