@@ -1,11 +1,11 @@
 import React from 'react'
 import { FaShoppingBag } from 'react-icons/fa'
 
-interface Props {
+interface IProps {
     totalItem: number
 }
 
-const Header: React.FC<Props> = ({totalItem}) => {
+const Header: React.FC<IProps> = ({totalItem}) => {
     return (
         <header className="header md:text-4xl">
             <nav className="navbar md:px-20">
