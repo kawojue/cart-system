@@ -1,16 +1,9 @@
 import React from "react";
+import { ICarts } from "../interface";
 import { FaChevronUp } from 'react-icons/fa'
 import { FaChevronDown } from 'react-icons/fa'
 
-interface ICarts {
-    id: number
-    title: string
-    price: number
-    img: string
-    quantity: number
-}
-
-const Item: React.FC<ICarts> = ({id, title, price, img, quantity}) => {
+const Item: React.FC<ICarts> = ({id, title, price, img, amount}) => {
     return (
             <article className="item-center">
                 <img src={img} className="img" />
@@ -25,7 +18,7 @@ const Item: React.FC<ICarts> = ({id, title, price, img, quantity}) => {
                     <button>
                         <FaChevronUp />
                     </button>
-                    <p>{quantity}</p>
+                    <p>{amount}</p>
                     <button>
                         <FaChevronDown />
                     </button>
