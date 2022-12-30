@@ -4,11 +4,11 @@
 @tailwind components;
 
 body {
-    @apply font-cabin relative;
+    @apply font-cabin relative bg-pry-clr-0 text-pry-clr-1;
 }
 
 .header {
-    @apply w-full mx-auto fixed top-0 bg-blue-500 text-white text-2xl tracking-wider font-semibold px-10 py-5;
+    @apply w-full mx-auto fixed top-0 bg-pry-clr-2 text-white text-2xl tracking-wider font-semibold px-10 py-5;
 }
 
 .navbar {
@@ -20,5 +20,33 @@ body {
 }
 
 .totalItem {
-    @apply absolute -top-[10px] -right-[5px] bg-blue-400 rounded-full p-0.5 text-sm;
+    @apply absolute -top-[10px] -right-[5px] bg-blue-400 rounded-full px-1 py-0.5 text-sm;
+}
+
+.main {
+    @apply mt-36 mx-auto w-[90vw] max-w-[700px];
+}
+
+.main-h1 {
+    @apply text-center font-bold text-3xl tracking-wider uppercase;
+}
+
+.item-container {
+    @apply mt-10 mb-6 w-full flex flex-col gap-12;
+}
+
+.item-center {
+    @apply flex w-full justify-between gap-10;
+}
+
+.img {
+    @apply w-20;
+}
+
+.item-info {
+    @apply w-full;
+}
+
+.quantity-container {
+    @apply flex flex-col items-center gap-2;
 }
