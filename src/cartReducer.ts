@@ -5,7 +5,7 @@ export type Actions =
     | {type: 'INCREASE'; idx:string}
     | {type: 'DECREASE'; idx:string}
     | {type: 'REM'; idx:string}
-    | {type: 'CLEAR'; payload: ICarts[]}
+    | {type: 'CLEAR'}
     | {type: 'FETCH'; payload: ICarts[]}
     | {type: 'ERROR'; errMsg: string | null}
 
@@ -35,6 +35,11 @@ export const cartReducer = (state:State, action:Actions) => {
             const newCarts = state.carts.filter((cart:any) => cart.id !== action.idx)
             return {
                 ...state, carts: newCarts
+            }
+        }
+        case 'CLEAR': {
+            return {
+                ...state, carts: []
             }
         }
         default: {
