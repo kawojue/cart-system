@@ -1,4 +1,12 @@
-const data:any = [
+interface ICarts {
+    id: number
+    title: string
+    price: number
+    img: string
+    quantity: number
+}
+
+const data: ICarts[] = [
     {
         id: 1,
         title: 'Samsung Galaxy S7',
