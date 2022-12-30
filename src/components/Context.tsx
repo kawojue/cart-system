@@ -1,33 +1,44 @@
+import axios from 'axios'
 import data from '../data'
-import {cartReducer} from '../cartReducer'
-import React, {createContext, useState, useReducer, ReactChildren} from 'react'
+import {IState } from '../interface'
+import { cartReducer } from '../cartReducer'
+import React, {createContext, useReducer, useEffect} from 'react'
 
-const Context = createContext({})
+const Context:any | null = createContext({})
 
-interface IProps {
-    children: React.ReactElement
+const initialStates:IState = {
+    loading: true,
+    amount: 0,
+    total: 0,
+    carts: data,
+    errMsg: null
 }
 
-const initialStates:any = {
-    qauntity: 0
-}
+export const DataProvider: React.FC<{children: React.ReactElement}> = ({children}) => {
+    const [state, dispatch] = useReducer(cartReducer, initialStates)
+    const url:string = 'https://course-api.com/react-useReducer-cart-project'
 
-export const DataProvider: React.FC<IProps> = ({children}) => {
-    interface ICarts {
-    id: number
-    title: string
-    price: number
-    img: string
-    quantity: number
-}
+    const fetchCarts = async () => {
+        try {
+            dispatch({type: 'LOADING', payload: true})
+            const res = await axios.get(url)
+            const data = res.data
+            dispatch({type: 'FETCH', payload: data})
+        } catch {
+            dispatch({type: 'ERROR', payload: 'Please, reload the page.'})
+        }
+    }
 
-    const [carts, setCarts] = useState<ICarts[]>(data)
-    const [state, dispatch] = useReducer<any>(cartReducer, initialStates)
-
+    useEffect(() => {
+        (async () => await fetchCarts())()
+        setTimeout(() => {
+            dispatch({type: 'LOADING', payload: false})
+        }, 1500)
+    }, [])
 
     return (
         <Context.Provider value={{
-            carts
+            ...state
         }}>
             {children}
         </Context.Provider>
