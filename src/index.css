@@ -110,3 +110,7 @@ body {
 .item-total button:hover {
     @apply bg-pry-clr-6;
 }
+
+.info {
+    @apply text-pry-clr-1 font-bold text-center mt-36 tracking-widest;
+}
