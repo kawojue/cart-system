@@ -1,15 +1,13 @@
-import { IState } from "./interface"
+import { State, ICarts} from "./IType"
 
-type Actions = 
+export type Actions = 
     | {type: 'LOADING'; isLoading: boolean}
     | {type: 'INCREASE'; idx:string}
     | {type: 'DECREASE'; idx:string}
     | {type: 'REM'; idx:string}
-    | {type: 'CLEAR'; payload: IState[]}
-    | {type: 'FETCH'; payload: IState[]}
-    | {type: 'ERROR'; errMsg: string}
-
-type State = IState[]
+    | {type: 'CLEAR'; payload: ICarts[]}
+    | {type: 'FETCH'; payload: ICarts[]}
+    | {type: 'ERROR'; errMsg: string | null}
 
 export const cartReducer = (state:State, action:Actions) => {
     switch(action.type) {
@@ -26,6 +24,15 @@ export const cartReducer = (state:State, action:Actions) => {
             return {
                 ...state, errMsg: action.errMsg
             }
+        }
+        case 'INCREASE': {
+            const newCarts = state.carts.map((cart:any) => cart.id === action.idx ? {...cart, amount: cart.amount += 1} : cart)
+            return {
+                ...state, carts: newCarts
+            }
+        }
+        default: {
+            return state
         }
     }
 }
