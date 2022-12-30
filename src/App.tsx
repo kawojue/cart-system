@@ -37,7 +37,9 @@ const App: React.FC = () => {
             <ItemLists />
             <TotalAmount />
           </> :
-          <h1 className="info text-2xl">Your cart is empty</h1>}
+          <h1 className="info text-2xl">
+            Your cart is empty.
+          </h1>}
       </main>
     </>
   )
