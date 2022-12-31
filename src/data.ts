@@ -1,4 +1,4 @@
-import { ICarts } from "./IType"
+import { ICarts } from "./source"
 
 const data: ICarts[] = [
     {
@@ -21,7 +21,7 @@ const data: ICarts[] = [
         price: 699.99,
         img: 'https://dl.airtable.com/.attachments/bae9208dc34f35128749ecda5b999e84/337c285d/phone-3_h2s6fo.png',
         amount: 1,
-    },
+    }
 ]
 
 export default data
