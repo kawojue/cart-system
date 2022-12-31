@@ -1,5 +1,4 @@
-import { State, Actions} from "./IType"
-
+import { State, Actions} from "./source"
 
 export const cartReducer = (state:State, action:Actions) => {
     switch(action.type) {
@@ -22,8 +21,19 @@ export const cartReducer = (state:State, action:Actions) => {
                 ...state, total: action.total
             }
         }
+        case 'CLEAR': {
+            return {
+                ...state, carts: []
+            }
+        }
+        case 'REMOVE': {
+            const newCarts = state.carts.filter((cart:any) => cart.id !== action.idx)
+            return {
+                ...state, carts: newCarts
+            }
+        }
         case 'INCREASE': {
-            const newCarts = state.carts.map((cart:any) => cart.id === action.quantObj.idx ? {...cart, amount: cart.amount += 1} : cart)
+            const newCarts = state.carts.map((cart:any) => cart.id === action.quantObj.idx ? {...cart, amount: cart.amount + 1} : cart)
             return {
                 ...state, carts: newCarts
             }
@@ -34,17 +44,7 @@ export const cartReducer = (state:State, action:Actions) => {
                 ...state, carts: newCarts
             }
         }
-        case 'REM': {
-            const newCarts = state.carts.filter((cart:any) => cart.id !== action.idx)
-            return {
-                ...state, carts: newCarts
-            }
-        }
-        case 'CLEAR': {
-            return {
-                ...state, carts: []
-            }
-        }
+        
         default: {
             return state
         }
