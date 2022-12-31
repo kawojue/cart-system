@@ -6,7 +6,7 @@ It's going to have Total Price, Clear All Items, Delete Individual Item, Increme
 
 I built a similar one in an Ecommerce website but with React JS and it wasn't useReducer and it's working perfectly fine. Here: <https://github.com/alwaysappear/comfy-react>
 
-## Deployed version <https://alwaysappear-cart-system.netlify.app/>
+## Deployed version, here: <https://alwaysappear-cart-system.netlify.app/>
 
 ## Clone
 
