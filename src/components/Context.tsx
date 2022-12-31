@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { State } from '../IType'
+import { ICarts, State } from '../IType'
 import data from '../data'
 import { cartReducer } from '../cartReducer'
 import React, {createContext, useReducer, useEffect} from 'react'
@@ -30,6 +30,29 @@ export const DataProvider: React.FC<{children: React.ReactElement}> = ({ childre
         }
     }
 
+    const removeCart = (id:string):void => {
+        dispatch({type: 'REM', idx: id})
+    }
+
+    const quantity = (id:string, action:string):void => {
+        const getItem = state.carts.filter((cart:any) => cart.id === id)
+        const payload = {idx:id, quantity: getItem[0].amount}
+        if (action === 'increment') {
+            dispatch({type: "INCREASE", quantObj: payload})
+        }
+
+        if (action === 'decrement') {
+            dispatch({type: "DECREASE", quantObj: payload})
+            if (getItem[0].amount === 0) {
+                dispatch({type: 'REM', idx: id})
+            }
+        }
+    }
+
+    const clearCart = ():void => {
+        dispatch({type: 'CLEAR'})
+    }
+
     useEffect(() => {
         (async () => await fetchCarts())()
         setTimeout(() => {
@@ -37,23 +60,12 @@ export const DataProvider: React.FC<{children: React.ReactElement}> = ({ childre
         }, 1500)
     }, [])
 
-    const quantity = (id:string, action:string):void => {
-        if (action === 'increment') {
-            dispatch({type: "INCREASE", idx: id})
-        }
-
-        if (action === 'decrement') {
-            dispatch({type: "DECREASE", idx: id})
-        }
-    }
-
-    const removeCart = (id:string):void => {
-        dispatch({type: 'REM', idx: id})
-    }
-
-    const clearCart = ():void => {
-        dispatch({type: 'CLEAR'})
-    }
+    useEffect(() => {
+        let total:number = 0
+        const getTotal = state.carts.map((cart:any) => cart.amount * cart.price)
+        getTotal.forEach((t:number) => total += t)
+        dispatch({type: 'TOTAL', total})
+    }, [state.carts])
 
     return (
         <Context.Provider value={{
