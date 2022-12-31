@@ -1,7 +1,6 @@
-import React from 'react'
 import Item from './Item'
 import Context from './Context'
-import { useContext } from 'react'
+import React, { useContext } from 'react'
 
 const ItemLists: React.FC = () => {
     const { carts } = useContext<any>(Context)
