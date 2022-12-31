@@ -6,6 +6,11 @@ export interface ICarts {
     amount: number
 }
 
+export interface IQuantityObj {
+    idx: string
+    quantity: number | undefined
+}
+
 export type State = {
     loading: boolean
     amount?: number
@@ -14,7 +19,13 @@ export type State = {
     errMsg: null | string
 }
 
-export interface IQuantityObj {
-    idx: string
-    quantity: number | undefined
-}
+
+export type Actions = 
+    | {type: 'LOADING'; isLoading: boolean}
+    | {type: 'INCREASE'; quantObj: IQuantityObj}
+    | {type: 'DECREASE'; quantObj: IQuantityObj}
+    | {type: 'REM'; idx:string}
+    | {type: 'CLEAR'}
+    | {type: 'FETCH'; payload: ICarts[]}
+    | {type: 'ERROR'; errMsg: string | null}
+    | {type: 'TOTAL'; total: number}
