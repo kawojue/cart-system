@@ -111,6 +111,15 @@ body {
     @apply bg-pry-clr-6;
 }
 
+.info,
+.empty-msg {
+    @apply tracking-widest text-center
+}
+
 .info {
-    @apply text-pry-clr-1 font-bold text-center mt-36 tracking-widest;
+    @apply text-pry-clr-1 font-bold mt-36;
+}
+
+.empty-msg {
+    @apply text-xl text-pry-clr-3 font-semibold mt-5
 }
