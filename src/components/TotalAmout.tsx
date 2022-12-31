@@ -9,7 +9,7 @@ const TotalAmount:React.FC = () => {
             <div className="line"/>
             <article>
                 <p>total</p>
-                <p>${total}</p>
+                <p>${total.toFixed(2)}</p>
             </article>
             <div className="btn-conatainer">
             <button onClick={() => clearCart()}>
