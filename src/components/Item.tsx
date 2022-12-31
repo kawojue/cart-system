@@ -1,10 +1,10 @@
 import Context from './Context'
-import { ICarts } from "../IType"
+import { ICarts } from "../source"
 import React, { useContext } from "react"
 import { FaChevronUp } from 'react-icons/fa'
 import { FaChevronDown } from 'react-icons/fa'
 
-const Item: React.FC<ICarts> = ({id, title, price, img, amount}) => {
+const Item: React.FC<ICarts> = ({ id, title, price, img, amount }) => {
     const { quantity, removeCart } = useContext<any>(Context)
 
     return (
