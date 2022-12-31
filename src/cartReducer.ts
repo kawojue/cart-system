@@ -44,7 +44,6 @@ export const cartReducer = (state:State, action:Actions) => {
                 ...state, carts: newCarts
             }
         }
-        
         default: {
             return state
         }
